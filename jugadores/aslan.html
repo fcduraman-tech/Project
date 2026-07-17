@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aslan - Duraman FC</title>
+    <!-- Subimos un nivel en la carpeta (../) para encontrar la hoja de estilos y la imagen -->
+    <link rel="icon" href="../img/dm logo.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para la ficha de jugador */
+        .ficha-contenedor {
+            background-color: #11141a;
+            border: 2px solid #222735;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 650px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 255, 135, 0.05);
+        }
+        .avatar-jugador {
+            font-size: 5rem;
+            background: #171b26;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #00ff87;
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.2);
+        }
+        .nombre-jugador {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+        .titulos-jugador {
+            color: #00ff87;
+            font-size: 1.2rem;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+        .bloque-estadisticas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .stat-box {
+            background: #171b26;
+            border: 1px solid #222735;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .stat-valor {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff87;
+        }
+        .stat-etiqueta {
+            font-size: 0.75rem;
+            color: #8c93a6;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+        .historial-seccion {
+            border-top: 1px solid #222735;
+            padding-top: 25px;
+            text-align: left;
+        }
+        .historial-titulo {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: #ffffff;
+            border-left: 3px solid #00ff87;
+            padding-left: 10px;
+        }
+        .historial-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            border-bottom: 1px dashed #1f2430;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="club-header">
+        <h1 class="club-title">Duraman FC</h1>
+        <p class="club-subtitle">Perfil Histórico del Jugador</p>
+    </header>
+
+    <main class="ficha-contenedor">
+        <!-- Puedes cambiar el emoji de avatar por una etiqueta <img> con su foto real más adelante -->
+        <div class="avatar-jugador">👤</div>
+        
+        <h2 class="nombre-jugador">Aslan</h2>
+        <div class="titulos-jugador">⚽ Máximo Goleador | ⚔️ MVP</div>
+
+        <!-- Estadísticas acumuladas de la temporada actual -->
+        <div class="bloque-estadisticas">
+            <div class="stat-box">
+                <div class="stat-valor">55</div>
+                <div class="stat-etiqueta">Partidos</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-valor">58</div>
+                <div class="stat-etiqueta">Goles</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-valor">29</div>
+                <div class="stat-etiqueta">Asistencias</div>
+            </div>
+        </div>
+
+        <!-- Sección de Hitos Históricos -->
+        <div class="historial-seccion">
+            <h3 class="historial-titulo">Palmarés & Trayectoria</h3>
+            <div class="historial-item">
+                <span>Goles Totales Club</span>
+                <strong>124 Goles</strong>
+            </div>
+            <div class="historial-item">
+                <span>Puntos Totales (G*3 + A*2)</span>
+                <strong>430 Puntos</strong>
+            </div>
+            <div class="historial-item">
+                <span>Temporadas en el Club</span>
+                <strong>3 Temporadas</strong>
+            </div>
+            <div class="historial-item">
+                <span>Distinciones MVP</span>
+                <strong>14 Partidos</strong>
+            </div>
+        </div>
+
+        <div class="acciones-tabla" style="margin-top: 30px;">
+            <a href="../tabla-actual.html" class="btn-volver">← Volver a la Tabla</a>
+        </div>
+    </main>
+
+    <footer class="club-footer">
+        <p>© 2026 Duraman FC. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jugadores - Duraman FC</title>
+    <link rel="icon" href="img/dm logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .buscador-contenedor {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .input-buscador {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            background-color: #11141a;
+            border: 2px solid #222735;
+            border-radius: 10px;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .input-buscador:focus {
+            border-color: #00ff87;
+        }
+        .lista-jugadores {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .tarjeta-jugador {
+            background-color: #11141a;
+            border: 1px solid #222735;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .tarjeta-jugador:hover {
+            transform: translateX(5px);
+            border-color: #00ff87;
+        }
+        .info-basica {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .inicial-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #171b26;
+            border: 1px solid #00ff87;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #00ff87;
+        }
+        .datos-texto {
+            display: flex;
+            flex-direction: column;
+        }
+        .nombre-lista {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .posicion-lista {
+            font-size: 0.8rem;
+            color: #8c93a6;
+        }
+        .flecha-ver {
+            color: #00ff87;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="club-header">
+        <h1 class="club-title">Duraman FC</h1>
+        <p class="club-subtitle">PLANTILLA DE JUGADORES</p>
+    </header>
+
+    <div class="buscador-contenedor">
+        <input type="text" id="buscador" class="input-buscador" placeholder="Buscar jugador por nombre...">
+    </div>
+
+    <main class="lista-jugadores" id="lista-jugadores">
+
+    </main>
+
+    <div class="acciones-tabla" style="text-align: center; margin-bottom: 40px;">
+        <a href="index.html" class="btn-volver">← Volver al Panel</a>
+    </div>
+
+    <footer class="club-footer">
+        <p>© 2026 Duraman FC. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const jugadores = [
+            { nombre: "Aslan", partidos: 185, goles: 235, asistencias: 122, mvp: 14, posicion: "DC/EI/MCO", nacionalidad: "Venezolano 🇻🇪", edad: 19 },
+            { nombre: "Dawins", partidos: 179, goles: 200, asistencias: 117, mvp: 16, posicion: "ED/MCO/MC", nacionalidad: "Dominicano 🇩🇴", edad: 18 },
+            { nombre: "Wenderly", partidos: 135, goles: 182, asistencias: 56, mvp: 6, posicion: "DC/EI/ED", nacionalidad: "Haitiano 🇭🇹", edad: 19 },
+            { nombre: "Sebastián", partidos: 170, goles: 104, asistencias: 48, mvp: 15, posicion: "DFC/DC", nacionalidad: "Venezolano 🇻🇪", edad: 21 },
+            { nombre: "Eliant", partidos: 98, goles: 81, asistencias: 63, mvp: 4, posicion: "ED/EI", nacionalidad: "Dominicano 🇩🇴", edad: 21 },
+            { nombre: "Josue", partidos: 41, goles: 71, asistencias: 27, mvp: 0, posicion: "DC", nacionalidad: "Venezolano 🇻🇪", edad: 19 },
+            { nombre: "Christian", partidos: 79, goles: 12, asistencias: 76, mvp: 1, posicion: "MC/DFC", nacionalidad: "Dominicano 🇩🇴", edad: 19 },
+            { nombre: "Daniel", partidos: 40, goles: 17, asistencias: 18, mvp: 6, posicion: "DFC/MCD/MC", nacionalidad: "Dominicano 🇩🇴", edad: 17 },
+            { nombre: "Miguel", partidos: 86, goles: 28, asistencias: 11, mvp: 0, posicion: "LD/MC/MCO", nacionalidad: "Dominicano 🇩🇴", edad: 19 },
+            { nombre: "Jeremy", partidos: 46, goles: 25, asistencias: 14, mvp: 3, posicion: "EI/ED", nacionalidad: "Dominicano 🇩🇴", edad: 17 },
+            { nombre: "Joelfry", partidos: 66, goles: 24, asistencias: 19, mvp: 7, posicion: "MCD/MC", nacionalidad: "Dominicano 🇩🇴", edad: 19 },
+            { nombre: "Gari", partidos: 45, goles: 11, asistencias: 24, mvp: 3, posicion: "DFC/MC", nacionalidad: "Dominicano 🇩🇴", edad: 19 },
+            { nombre: "Adonys", partidos: 36, goles: 20, asistencias: 6, mvp: 3, posicion: "PO/DFC/DC", nacionalidad: "Dominicano 🇩🇴", edad: 20 },
+            { nombre: "Leo", partidos: 105, goles: 9, asistencias: 22, mvp: 3, posicion: "DFC/MCD/PO", nacionalidad: "Dominicano 🇩🇴", edad: 20 },
+            { nombre: "Nicolás", partidos: 51, goles: 11, asistencias: 15, mvp: 5, posicion: "DFC/MC", nacionalidad: "Dominicano 🇩🇴", edad: 14 },
+            { nombre: "Keurys", partidos: 28, goles: 13, asistencias: 8, mvp: 0, posicion: "EI", nacionalidad: "Dominicano 🇩🇴", edad: 16 },
+            { nombre: "Geraldo", partidos: 66, goles: 6, asistencias: 18, mvp: 5, posicion: "DFC", nacionalidad: "Dominicano 🇩🇴", edad: 18 },
+            { nombre: "Dylan", partidos: 17, goles: 8, asistencias: 8, mvp: 1, posicion: "MCO/ED", nacionalidad: "Dominicano 🇩🇴", edad: 14 },
+            { nombre: "Alberto", partidos: 34, goles: 10, asistencias: 5, mvp: 0, posicion: "DFC/PO", nacionalidad: "Dominicano 🇩🇴", edad: 19 },
+            { nombre: "Welfry", partidos: 13, goles: 9, asistencias: 2, mvp: 1, posicion: "MCO", nacionalidad: "Dominicano 🇩🇴", edad: 16 },
+            { nombre: "Oscar", partidos: 49, goles: 6, asistencias: 5, mvp: 7, posicion: "DFC/MC/PO", nacionalidad: "Dominicano 🇩🇴", edad: 20 },
+            { nombre: "Obed", partidos: 16, goles: 2, asistencias: 7, mvp: 3, posicion: "PO/MC", nacionalidad: "Dominicano 🇩🇴", edad: 18 },
+            { nombre: "Argenis", partidos: 4, goles: 2, asistencias: 4, mvp: 0, posicion: "MC", nacionalidad: "Dominicano 🇩🇴", edad: 20 },
+            { nombre: "Jacob", partidos: 4, goles: 2, asistencias: 2, mvp: 0, posicion: "DC", nacionalidad: "Dominicano 🇩🇴", edad: 13 },
+            { nombre: "Erick", partidos: 3, goles: 2, asistencias: 0, mvp: 0, posicion: "DFC", nacionalidad: "Dominicano 🇩🇴", edad: 18 },
+            { nombre: "Lecnar", partidos: 42, goles: 0, asistencias: 0, mvp: 2, posicion: "DFC/PO", nacionalidad: "Dominicano 🇩🇴", edad: 17 }
+        ];
+
+        let maxGoles = 0, maxAsistencias = 0, maxGMasA = 0, maxMvp = 0;
+
+        jugadores.forEach(j => {
+            j.goles = parseInt(j.goles) || 0;
+            j.asistencias = parseInt(j.asistencias) || 0;
+            j.partidos = parseInt(j.partidos) || 0;
+            j.mvp = parseInt(j.mvp) || 0;
+            j.gMasA = j.goles + j.asistencias;
+
+            if (j.goles > maxGoles) maxGoles = j.goles;
+            if (j.asistencias > maxAsistencias) maxAsistencias = j.asistencias;
+            if (j.gMasA > maxGMasA) maxGMasA = j.gMasA;
+            if (j.mvp > maxMvp) maxMvp = j.mvp;
+        });
+
+        jugadores.forEach(j => {
+            let titulosArray = [];
+            if (j.goles === maxGoles && maxGoles > 0) titulosArray.push("⚽");
+            if (j.asistencias === maxAsistencias && maxAsistencias > 0) titulosArray.push("🦵");
+            if (j.gMasA === maxGMasA && maxGMasA > 0) titulosArray.push("⚔️");
+            if (j.mvp === maxMvp && maxMvp > 0) titulosArray.push("⭐");
+            j.titulo = titulosArray.join(" ");
+        });
+
+        jugadores.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+        const contenedorLista = document.getElementById("lista-jugadores");
+
+        function renderizarLista(filtro = "") {
+            contenedorLista.innerHTML = "";
+            const filtroMinuscula = filtro.toLowerCase();
+
+            jugadores.forEach(j => {
+                if (!j.nombre.toLowerCase().includes(filtroMinuscula)) return;
+
+                const urlParams = `user=${encodeURIComponent(j.nombre)}&pj=${j.partidos}&g=${j.goles}&a=${j.asistencias}&mvp=${j.mvp}&t=${encodeURIComponent(j.titulo || "-")}&pos=${encodeURIComponent(j.posicion)}&nac=${encodeURIComponent(j.nacionalidad)}&edad=${j.edad}`;
+
+                const enlace = document.createElement("a");
+                enlace.href = `perfil-historico.html?${urlParams}`;
+                enlace.className = "tarjeta-jugador";
+
+                enlace.innerHTML = `
+                    <div class="info-basica">
+                        <div class="inicial-avatar">${j.nombre.charAt(0)}</div>
+                        <div class="datos-texto">
+                            <span class="nombre-lista">${j.nombre}</span>
+                            <span class="posicion-lista">${j.posicion}</span>
+                        </div>
+                    </div>
+                    <div class="flecha-ver">Ficha →</div>
+                `;
+                contenedorLista.appendChild(enlace);
+            });
+        }
+
+        document.getElementById("buscador").addEventListener("input", (e) => {
+            renderizarLista(e.target.value);
+        });
+
+        renderizarLista();
+    </script>
+</body>
+</html>
